@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Game</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <!-- Game Title -->
+    <h1>Memory Game</h1>
+
+    <!-- Game Board -->
+    <div id="board" class="board"></div>
+
+    <!-- Game Info -->
+    <div class="game-info">
+        <div class="player">
+            <input type="text" id="player-alias" placeholder="Nickname" />
+        </div>
+        <div class="stats">
+            <span id="moves-count">0</span>
+            <span class="separator"> | </span> 
+            <span id="time-elapsed">0.00</span>
+            <span class="separator"> | </span> 
+            <span id="surrogate-score">0</span>
+        </div>
+    </div>
+
+    <!-- Reset Button -->
+    <button id="reset-button" class="button">New Game</button>
+
+    <!-- Game Configuration -->
+    <script>
+        const INITIAL_CARDS = {{ cards_json | tojson }};
+        const CELEBRATE_SOUND_URL = "{{ url_for('static', filename='assets/yay.mp3') }}";
+    </script>
+    
+    <!-- Game Logic -->
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

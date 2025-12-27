@@ -1,0 +1,245 @@
+/* ============================================================================
+   BASE STYLES
+   ============================================================================ */
+
+body {
+    font-family: "Roboto Mono", monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 12px 0;
+}
+
+h1 {
+    width: 500px;
+    height: 100px;
+    font-size: 56px;
+    margin-top: 12px;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ============================================================================
+   GAME INFO SECTION
+   ============================================================================ */
+
+.game-info {
+    width: 500px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 36px;
+    margin-bottom: 12px;
+    font-size: 20px;
+}
+
+.stats {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.separator {
+    color: #9c8f86;
+    opacity: 0.7;
+}
+
+/* Player Alias Input */
+#player-alias {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 700;
+    text-align: left;
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 150px;
+    padding: 0;
+}
+
+#player-alias::placeholder {
+    color: rgba(0, 0, 0, 0.3);
+    font-weight: 500;
+}
+
+#player-alias[readonly] {
+    cursor: default;
+}
+
+/* Game Stats */
+#moves-count {
+    font-size: 16px;
+    font-weight: 500;
+    display: inline-block;
+    width: 2ch;
+    text-align: right;
+    color: #7a5a45;
+}
+
+#time-elapsed {
+    font-size: 16px;
+    font-weight: 500;
+    display: inline-block;
+    width: 5ch;
+    text-align: right;
+    color: #5b7288;
+}
+
+#time-elapsed::after {
+    content: "s";
+    margin-left: 1px;
+}
+
+#surrogate-score {
+    font-weight: 700;
+    display: inline-block;
+    width: 3ch;
+    text-align: left;
+    color: #2f343a;
+}
+
+/* ============================================================================
+   GAME BOARD
+   ============================================================================ */
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: repeat(4, 130px);
+    gap: 25px;
+}
+
+/* ============================================================================
+   CARD STYLES
+   ============================================================================ */
+
+.card {
+    width: 100px;
+    height: 130px;
+    border-radius: 10px;
+    font-size: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #eedbcb;
+    cursor: pointer;
+    user-select: none;
+    box-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.06),
+        0 4px 10px rgba(0, 0, 0, 0.08);
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.2s ease,
+        filter 0.15s ease;
+}
+
+/* Card States */
+.card.hidden {
+    background-color: #dcbea5;
+    color: transparent;
+}
+
+.card.hidden:hover {
+    box-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.08),
+        0 4px 10px rgba(0, 0, 0, 0.12);
+    transform: translateY(-4px);
+}
+
+.card.flipped {
+    box-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.08),
+        0 4px 10px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
+.card.revealed {
+    background-color: #f2d7b5;
+    transform: scale(1.05);
+    box-shadow:
+        0 0 12px rgba(0, 0, 0, 0.08),
+        0 4px 12px rgba(0, 0, 0, 0.16);
+    filter: brightness(1.03);
+}
+
+.card.finished {
+    background-color: #ead6bf;
+    color: transparent;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.35),
+        0 1px 3px rgba(0, 0, 0, 0.06);
+    filter: saturate(0.97);
+    transform: none;
+}
+
+/* ============================================================================
+   BUTTON STYLES
+   ============================================================================ */
+
+button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-top: 24px;
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: #d7e3f4;
+    border: 3px solid #a8b7c9;
+    color: #2f3b48;
+}
+
+button:hover {
+    background-color: #e4edf8;
+    box-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.08),
+        0 4px 10px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
+button:active {
+    background-color: #c7d4e6;
+    transform: translateY(0) scale(0.98);
+    box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.15),
+        0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+button.probing {
+    background-color: #eaf1fb;
+    animation: breathe 1.8s ease-in-out infinite;
+}
+
+@keyframes breathe {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 rgba(168, 183, 201, 0);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 12px rgba(168, 183, 201, 0.45);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 rgba(168, 183, 201, 0);
+    }
+}
+
+/* ============================================================================
+   CELEBRATION ANIMATION
+   ============================================================================ */
+
+.emoji-particle {
+    position: fixed;
+    font-size: 36px;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 600ms ease-in-out;
+    will-change: transform, opacity;
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+}
