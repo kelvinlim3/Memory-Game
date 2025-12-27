@@ -2,6 +2,8 @@
 
 A web-based memory card game built with Flask and vanilla JavaScript. Match pairs of emojis while tracking your moves, time, and score!
 
+🌐 **Live demo:** https://memory-game-pf90.onrender.com/
+
 ## 🚀 Getting Started
 
 ### Prerequisites
